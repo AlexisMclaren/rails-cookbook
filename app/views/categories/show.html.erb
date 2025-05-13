@@ -1,5 +1,5 @@
 <%= @category.name %>
-
+<%= link_to "Add recipe", new_category_bookmark_path(@category) %>
 <% @category.bookmarks.each do |bookmark| %>
   <%= bookmark.recipe.name %>
   <%= link_to "|Delete",
@@ -7,3 +7,4 @@
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
   %>
 <% end %>
+<%= link_to "Back", categories_path %>
