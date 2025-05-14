@@ -1,10 +1,28 @@
-<%= @category.name %>
-<%= link_to "Add recipe", new_category_bookmark_path(@category) %>
-<% @category.bookmarks.each do |bookmark| %>
-  <%= bookmark.recipe.name %>
-  <%= link_to "|Delete",
-    bookmark_path(bookmark),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %>
-<% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  <div class="container">
+    <h1><%= @category.name %></h1>
+  </div>
+</div>
+<div class="mid_sec_container">
+  <h3>Recipes</h3>
+  <%= link_to "Add recipe", new_category_bookmark_path(@category), class: "btn btn-flat" %>
+</div>
+
+<div class="cards">
+  <% @category.bookmarks.each do |bookmark| %>
+    <div class="card-trip">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="card-trip-infos">
+        <%= bookmark.recipe.name %>
+        <%= bookmark.recipe.rating %>
+        <%= bookmark.comment %>
+        <%= link_to "|Delete",
+          bookmark_path(bookmark),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <%= link_to "Back", categories_path %>
